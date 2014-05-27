@@ -18,6 +18,7 @@ class Blocklistimporter:
         self.__conf["socket"] = "/var/run/fail2ban/fail2ban.sock"
         self.__conf["url"] = "https://api.blocklist.de/getlast.php?time=300"
         self.__conf["logfile"] = "/etc/fail2ban/empty.log"
+        self.__conf["loglevel"] = logging.ERROR
 
 
     def fetch_list(self):
@@ -52,7 +53,7 @@ class Blocklistimporter:
 
 
     def start(self):
-        logSys.setLevel(logging.ERROR)
+        logSys.setLevel(self.__conf["loglevel"])
         stdout = logging.StreamHandler(sys.stdout)
         formatter = logging.Formatter('%(levelname)-6s %(message)s')
         stdout.setFormatter(formatter)
