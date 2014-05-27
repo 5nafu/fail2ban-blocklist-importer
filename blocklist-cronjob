@@ -1,5 +1,8 @@
+# Install this file to /etc/cron.d
+
 # Set your Emailadress if you would like to get notifications to a different Address.
 MAILTO=root
+
 #
 # Run cron jobs for updating fail2ban from blocklist.de every 5 Minutes
 #
