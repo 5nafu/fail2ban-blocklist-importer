@@ -12,9 +12,15 @@ In the script, edit the configuration dict:
 *   **socket:** The socket used by fail2ban
 *   **url:** The URL of the list.
 *   **logfile:** Full path of the Logfile used in the Jail configuration. This file will be crated if it does not exist.
+*   **loglevel:** How much should be logged. Currently used values are: logging.DEBUG, logging.INFO, logging.ERROR
 
 TODO
 ----
 
 *   Get Socket and Logfile Configuration from fail2ban
 *   handle unblocking of IPs
+
+Credit
+------
+
+This script was inspired by [Kapsonfile](https://forum.blocklist.de/viewtopic.php?f=11&t=107#p333 "Thank you!")
