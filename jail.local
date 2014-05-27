@@ -1,0 +1,16 @@
+[blocklist]
+# Change the port variable if you would like to ban more protocols
+port     =  ssh
+
+# The logfile used to trigger the actual ban. The file does not have to exist
+logpath  =  /etc/fail2ban/empty.log
+
+# How long in seconds should an IP be blocked (36000s = 10 hrs)
+bantime  =  36000
+
+### No need to change below this line ###
+enabled  =  true
+maxretry =  1
+filter   =  sshd
+maxretry =  1
+action   = %(action_)s
