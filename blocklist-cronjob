@@ -1,0 +1,6 @@
+# Set your Emailadress if you would like to get notifications to a different Address.
+MAILTO=root
+#
+# Run cron jobs for updating fail2ban from blocklist.de every 5 Minutes
+#
+*/5 * * * *	root	/usr/bin/nice -n 5 /etc/fail2ban/blocklist.py
