@@ -68,6 +68,7 @@ class Blocklistimporter:
                 return False
         logSys.debug("Touching log to ban new IPs")
         open(self.__conf["logfile"],'w').close
+        return True
 
 if __name__ == "__main__":
     importer = Blocklistimporter()
