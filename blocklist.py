@@ -44,7 +44,7 @@ class Blocklistimporter:
             logSys.debug("Blocking %s" % ip)
             ret = client.send(command + [ip])
             if ret[0] == 0:
-                logSys.debug("OK : " + `ret[1]`)
+                logSys.debug("OK : " + ret[1])
             else:
                 print ret
                 logSys.debug("NOK: %s = %s" % (ret[1].args, ret[1]))
