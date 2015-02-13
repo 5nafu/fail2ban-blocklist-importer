@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
-import sys, os, logging, urllib2, socket
+import sys
+import logging
+import urllib2
+import socket
 
 # Inserts our own modules path first in the list
 # fix for bug #343821
@@ -30,17 +33,17 @@ class Blocklistimporter:
         logSys.debug("Got IPs")
         return listcontent
 
-    def block_ip(self,ip):
+    def block_ip(self, ip):
         try:
             client = CSocket(self.__conf["socket"])
             command = ["set", "blocklist", "banip"]
-            logSys.debug("Blocking %s" % ip )
-            ret = client.send(command+[ip])
+            logSys.debug("Blocking %s" % ip)
+            ret = client.send(command + [ip])
             if ret[0] == 0:
                 logSys.debug("OK : " + `ret[1]`)
             else:
                 print ret
-                logSys.debug("NOK: %s = %s" % (ret[1].args,ret[1]))
+                logSys.debug("NOK: %s = %s" % (ret[1].args, ret[1]))
                 return False
         except socket.error:
             logSys.error("Unable to contact server. Is it running?")
@@ -50,8 +53,6 @@ class Blocklistimporter:
             return False
         return True
 
-
-
     def start(self):
         logSys.setLevel(self.__conf["loglevel"])
         stdout = logging.StreamHandler(sys.stdout)
@@ -59,15 +60,15 @@ class Blocklistimporter:
         stdout.setFormatter(formatter)
         logSys.addHandler(stdout)
 
-        listcontent=self.fetch_list()
+        listcontent = self.fetch_list()
         for ip in listcontent:
-            try: 
+            try:
                 self.block_ip(ip.rstrip())
             except Exception, e:
-                logSys.debug("Got exception: %s"%str(e))
+                logSys.debug("Got exception: %s" % str(e))
                 return False
         logSys.debug("Touching log to ban new IPs")
-        open(self.__conf["logfile"],'w').close
+        open(self.__conf["logfile"], 'w').close
         return True
 
 if __name__ == "__main__":
