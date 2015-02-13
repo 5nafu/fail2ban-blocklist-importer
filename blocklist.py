@@ -44,21 +44,20 @@ class Blocklistimporter:
         try:
             client = CSocket(self.__conf["socket"])
             command = ["set", "blocklist", "banip"]
-            logSys.debug("Blocking %s" % ip)
+            logSys.debug("Blocking %s", ip)
             ret = client.send(command + [ip])
             if ret[0] == 0:
-                logSys.debug("OK : " + ret[1])
+                logSys.debug("OK : " + str(ret[1]))
             else:
                 print ret
-                logSys.debug("NOK: %s = %s" % (ret[1].args, ret[1]))
-                return False
+                logSys.debug("NOK: %s = %s", ret[1].args, ret[1])
+                raise Exception
         except socket.error:
             logSys.error("Unable to contact server. Is it running?")
-            return False
+            raise
         except Exception, e:
             logSys.error(e)
-            return False
-        return True
+            raise
 
     def start(self):
         logSys.setLevel(self.__conf["loglevel"])
