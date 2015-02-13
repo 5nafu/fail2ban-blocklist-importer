@@ -31,7 +31,7 @@ class Blocklistimporter:
     def fetch_list(self):
         logSys.debug("Fetching IPs")
         try:
-            listcontent = urllib2.urlopen(self.__conf["url"]).readlines()
+            listcontent = urllib2.urlopen(self.__conf["url"], timeout=10).readlines()
         except urllib2.HTTPError as e:
             self.die("Cannot fetch URL: %s" % e, 1)
         except urllib2.URLError as e:
