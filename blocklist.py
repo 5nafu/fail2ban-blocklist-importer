@@ -23,13 +23,17 @@ class Blocklistimporter:
         self.__conf["logfile"] = "/etc/fail2ban/empty.log"
         self.__conf["loglevel"] = logging.ERROR
 
+    def die(self, message="", code=0):
+        if message:
+            logSys.error(message)
+        sys.exit(code)
 
     def fetch_list(self):
         logSys.debug("Fetching IPs")
         try:
             listcontent = urllib2.urlopen(self.__conf["url"]).readlines()
         except urllib2.URLError as e:
-          sys.exit("Cannot fetch URL: %s", e)
+            self.die("Cannot fetch URL: %s" % e, 1)
         logSys.debug("Got IPs")
         return listcontent
 
