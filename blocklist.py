@@ -37,6 +37,10 @@ class Blocklistimporter:
         except urllib2.URLError as e:
             logSys.debug("Cannot fetch URL: %s", e)
             self.die("", 0)
+        except ssl.SSLError as e:
+            logSys.debug("Cannot fetch URL: %s", e)
+            self.die("", 0)
+            
         logSys.debug("Got IPs")
         return listcontent
 
