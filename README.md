@@ -1,4 +1,4 @@
-fail2fan-blocklist-importer
+fail2ban-blocklist-importer
 ===========================
 
 A small script to import and ban IPs from a list (like from blocklist.de). The list has to be formatted one IP per line, with no additional text.
