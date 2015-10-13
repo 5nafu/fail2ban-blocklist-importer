@@ -4,6 +4,7 @@ import sys
 import logging
 import urllib2
 import socket
+import ssl
 
 # Inserts our own modules path first in the list
 # fix for bug #343821
