@@ -5,6 +5,8 @@ A small script to import and ban IPs from a list (like from blocklist.de). The l
 
 After fetching the list, the script will add each IP to fail2bans blocklist jail and trigger the actual banning by touching the appropiate log file.
 
+Tested on Debian Wheezy with fail2ban 0.8.6
+
 Configuration
 -------------
 
@@ -13,6 +15,8 @@ In the script, edit the configuration dict:
 *   **url:** The URL of the list.
 *   **logfile:** Full path of the Logfile used in the Jail configuration. This file will be crated if it does not exist.
 *   **loglevel:** How much should be logged. Currently used values are: logging.DEBUG, logging.INFO, logging.ERROR
+
+> *If your fail2ban modules are not in `/usr/share/fail2ban`, you need to change the import on line 11 according to your needs.*
 
 TODO
 ----
